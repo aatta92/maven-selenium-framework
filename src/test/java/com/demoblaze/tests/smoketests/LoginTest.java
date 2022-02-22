@@ -24,7 +24,7 @@ public class LoginTest extends Base {
         login("hsgdhgfhgdsf", "dhsfhdsgfd");
     }
 
-    private void login(String username, String password) {
+    public void login(String username, String password) {
         Library lib = new Library(driver);
         lib.enterText(By.cssSelector("#loginusername"), username);
         lib.enterText(By.cssSelector("#loginpassword"), password);
