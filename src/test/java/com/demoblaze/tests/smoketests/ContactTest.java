@@ -46,7 +46,7 @@ public class ContactTest extends Base {
     }
 
     /**
-     * Test case: Submitting empty contact form
+     * Test case: Submit form with data
      * Test steps:
      * 1) Go to app
      * 2) Click on Contact link on the header
