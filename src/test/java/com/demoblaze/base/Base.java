@@ -15,13 +15,11 @@ public class Base {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.get("https://www.demoblaze.com");
-        System.out.println("this is my before method");
     }
 
     @AfterMethod
     public void tearDown() {
         driver.quit();
-        System.out.println("this is my tearDown");
     }
 
 

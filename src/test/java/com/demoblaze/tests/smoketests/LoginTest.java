@@ -1,4 +1,4 @@
-package com.demoblaze.tests;
+package com.demoblaze.tests.smoketests;
 
 import com.demoblaze.base.Base;
 import com.demoblaze.utils.Library;
@@ -10,10 +10,9 @@ public class LoginTest extends Base {
 
 
     @Test
-    public void loginWithValidAccount_Test() throws InterruptedException {
+    public void loginWithValidAccount_Test() {
         Library lib = new Library(driver);
         lib.click(By.cssSelector("#login2"));
-        Thread.sleep(1000);
         login("geek", "geek");
     }
 
