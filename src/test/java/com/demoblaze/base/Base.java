@@ -6,9 +6,14 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
+
 public class Base {
 
     public static WebDriver driver;
+
+    public Base() {
+        System.out.println("Base constructor");
+    }
 
     @BeforeMethod
     public void setUp() {

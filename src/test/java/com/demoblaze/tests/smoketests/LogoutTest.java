@@ -26,7 +26,6 @@ public class LogoutTest extends Base {
         LoginTest loginTest = new LoginTest();
         login_headerLink.click();
         Thread.sleep(1000);
-        loginTest.login("geek", "geek");
         Thread.sleep(2000);
         String actualText = nameOfUser_headerLink.getText();
         Assert.assertTrue(actualText.contains("geek"));
