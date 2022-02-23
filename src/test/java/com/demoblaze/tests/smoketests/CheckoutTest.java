@@ -1,32 +1,56 @@
 package com.demoblaze.tests.smoketests;
 
 import com.demoblaze.base.Base;
-import com.demoblaze.utils.Library;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class CheckoutTest extends Base {
 
-    /**
-     * Test case: Check out
-     * Test steps:
-     * 1) Go to app
-     * 2) Add an item to cart
-     * 3) Go to cart
-     * 4) Click place order
-     * 5) Fill out the purchase form
-     * 6) Click purchase
-     * 7) Verify that purchase is successful
-     */
+
+    @FindBy(css = "[src='imgs/Nexus_6.jpg']")
+    WebElement product;
+
+    @FindBy(css = "[onclick='addToCart(3)']")
+    WebElement addToCart_btn;
+
+    @FindBy(css = "#cartur")
+    WebElement cart_headerLink;
+
+    @FindBy(css = "[data-target='#orderModal']")
+    WebElement placeOrder_btn;
+
+    @FindBy(css = "#name")
+    private WebElement name_textField;
+
+    @FindBy(css = "#country")
+    private WebElement country_textField;
+
+    @FindBy(css = "#city")
+    private WebElement city_textField;
+
+    @FindBy(css = "#card")
+    private WebElement creditCard_textField;
+
+    @FindBy(css = "#month")
+    private WebElement month_textField;
+
+    @FindBy(css = "#year")
+    private WebElement year_textField;
+
+    @FindBy(css = "[onclick='purchaseOrder()']")
+    private WebElement purchase_btn;
 
     @Test
     public void placeOrder() throws InterruptedException {
-        Library lib = new Library(driver);
+        PageFactory.initElements(driver, this);
         Thread.sleep(2000);
         addItemToCart();
         goToCart();
-        lib.click(By.cssSelector("[data-target='#orderModal']"));
+        placeOrder_btn.click();
         Thread.sleep(1000);
         fillOutFormAndSubmit("ilzat", "ET", "Ghulja", "123456", "12", "2000");
         Thread.sleep(1000);
@@ -35,30 +59,28 @@ public class CheckoutTest extends Base {
     }
 
     public void goToCart() throws InterruptedException {
-        Library lib = new Library(driver);
-        lib.click(By.cssSelector("#cartur"));
+        cart_headerLink.click();
         Thread.sleep(1000);
     }
 
     public void addItemToCart() throws InterruptedException {
-        Library lib = new Library(driver);
-        lib.click(By.cssSelector("[src='imgs/Nexus_6.jpg']"));
+        product.click();
         Thread.sleep(1000);
-        lib.click(By.cssSelector("[onclick='addToCart(3)']"));
+        addToCart_btn.click();
         Thread.sleep(500);
         driver.switchTo().alert().accept();
     }
 
 
     private void fillOutFormAndSubmit(String name, String country, String city, String creditCard, String month, String year) {
-        Library lib = new Library(driver);
-        lib.enterText(By.cssSelector("#name"), name);
-        lib.enterText(By.cssSelector("#country"), country);
-        lib.enterText(By.cssSelector("#city"), city);
-        lib.enterText(By.cssSelector("#card"), creditCard);
-        lib.enterText(By.cssSelector("#month"), month);
-        lib.enterText(By.cssSelector("#year"), year);
-        lib.click(By.cssSelector("[onclick='purchaseOrder()']"));
+        name_textField.sendKeys(name);
+        country_textField.sendKeys(country);
+        city_textField.sendKeys(city);
+        creditCard_textField.sendKeys(creditCard);
+        month_textField.sendKeys(month);
+        year_textField.sendKeys(year);
+        purchase_btn.click();
+
     }
 
 }

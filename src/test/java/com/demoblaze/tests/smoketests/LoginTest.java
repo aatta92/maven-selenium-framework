@@ -38,6 +38,7 @@ public class LoginTest extends Base {
     }
 
     public void login(String username, String password) {
+        PageFactory.initElements(driver, this);
         username_textField.sendKeys(username);
         password_textField.sendKeys(password);
         login_btn.click();
