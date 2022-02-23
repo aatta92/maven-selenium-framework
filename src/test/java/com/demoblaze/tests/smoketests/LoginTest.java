@@ -1,33 +1,45 @@
 package com.demoblaze.tests.smoketests;
 
 import com.demoblaze.base.Base;
-import com.demoblaze.utils.Library;
-import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Test;
 
 
 public class LoginTest extends Base {
 
+    @FindBy(css = "#login2")
+    WebElement headerLink;
+
+    @FindBy(css = "#loginusername")
+    WebElement username_textField;
+
+    @FindBy(css = "#loginpassword")
+    WebElement password_textField;
+
+    @FindBy(css = "[onclick='logIn()']")
+    WebElement login_btn;
 
     @Test
-    public void loginWithValidAccount_Test() {
-        Library lib = new Library(driver);
-        lib.click(By.cssSelector("#login2"));
+    public void loginWithValidAccount_Test() throws InterruptedException {
+        PageFactory.initElements(driver,this);
+        headerLink.click();
+        Thread.sleep(1000);
         login("geek", "geek");
     }
 
     @Test
     public void loginWithInvalidAccount_Test() throws InterruptedException {
-        Library lib = new Library(driver);
-        lib.click(By.cssSelector("#login2"));
+        PageFactory.initElements(driver, this);
+        headerLink.click();
         Thread.sleep(1000);
         login("hsgdhgfhgdsf", "dhsfhdsgfd");
     }
 
     public void login(String username, String password) {
-        Library lib = new Library(driver);
-        lib.enterText(By.cssSelector("#loginusername"), username);
-        lib.enterText(By.cssSelector("#loginpassword"), password);
-        lib.click(By.cssSelector("[onclick='logIn()']"));
+        username_textField.sendKeys(username);
+        password_textField.sendKeys(password);
+        login_btn.click();
     }
 }
