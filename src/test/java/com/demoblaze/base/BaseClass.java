@@ -1,25 +1,21 @@
 package com.demoblaze.base;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+import com.demoblaze.utils.DriverFactory;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
 
-public class Base {
+public class BaseClass {
 
     public static WebDriver driver;
 
-    public Base() {
-        System.out.println("Base constructor");
+    public BaseClass() {
+        driver = DriverFactory.openBrowser("chrome");
     }
 
     @BeforeMethod
     public void setUp() {
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
         driver.get("https://www.demoblaze.com");
     }
 
@@ -27,6 +23,5 @@ public class Base {
     public void tearDown() {
         driver.quit();
     }
-
 
 }

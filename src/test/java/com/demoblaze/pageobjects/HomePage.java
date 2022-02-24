@@ -1,45 +1,38 @@
 package com.demoblaze.pageobjects;
 
+import com.demoblaze.base.PageObject;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import static com.demoblaze.base.Base.driver;
+import java.util.List;
 
-public class HomePage {
 
-    @FindBy(css = "#login2")
-    WebElement login_headerLink;
+public class HomePage extends PageObject {
 
-    @FindBy(css = "#loginusername")
-    WebElement username_textField;
+    @FindBy(css = "#tbodyid img")
+    List<WebElement> productsCard;
 
-    @FindBy(css = "#loginpassword")
-    WebElement password_textField;
+    Navigation navigation;
 
-    @FindBy(css = "[onclick='logIn()']")
-    WebElement login_btn;
-
-    @FindBy(css = "#nameofuser")
-    WebElement nameOfUser_headerLink;
-
-    public HomePage() {
+    public HomePage(WebDriver driver) {
+        super(driver);
         PageFactory.initElements(driver, this);
+        navigation = new Navigation(driver);
     }
 
-    public HomePage login(String username, String password) throws InterruptedException {
-        login_headerLink.click();
+    public void logOut() throws InterruptedException {
+        navigation.logOut_link.click();
         Thread.sleep(1000);
-        username_textField.sendKeys(username);
-        password_textField.sendKeys(password);
-        login_btn.click();
-        Thread.sleep(1000);
-        return this;
     }
 
     public boolean isLoggedIn() {
-        return nameOfUser_headerLink.getText().contains("Welcome");
+        return navigation.nameOfUser_link.getText().contains("Welcome");
     }
 
-
+    public void chooseProductByIndex(int i) throws InterruptedException {
+        productsCard.get(i).click();
+        Thread.sleep(1000);
+    }
 }
