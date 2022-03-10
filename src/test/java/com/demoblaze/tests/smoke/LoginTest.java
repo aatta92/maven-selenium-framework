@@ -22,9 +22,9 @@ public class LoginTest extends BaseClass {
 
     @Test
     public void loginWithValidAccount() throws InterruptedException {
-        navigation.openLoginModal();
+        navigation.openLoginModal(); // this is clicking the login header link
         loginModal.enterUsernameAndPassword("geek", "geek");
-        boolean result = homePage.isLoggedIn();
+        boolean result = homePage.isLoggedIn(); // returns boolean
         Assert.assertTrue(result);
     }
 

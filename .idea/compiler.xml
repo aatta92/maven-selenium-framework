@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="my-automation-maven" />
+        <module name="maven-selenium-framework" />
       </profile>
     </annotationProcessing>
   </component>

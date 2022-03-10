@@ -20,6 +20,9 @@ public class Navigation extends PageObject {
     @FindBy(css = "#cartur")
     public WebElement cart_link;
 
+    @FindBy(css = "[data-target='#exampleModal']")
+    public WebElement contact_link;
+
     public Navigation(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
@@ -32,6 +35,11 @@ public class Navigation extends PageObject {
 
     public void goToShoppingCartPage() throws InterruptedException {
         cart_link.click();
+        Thread.sleep(1000);
+    }
+
+    public void clickContactHeaderLink() throws InterruptedException {
+        contact_link.click();
         Thread.sleep(1000);
     }
 
